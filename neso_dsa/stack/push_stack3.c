@@ -20,12 +20,27 @@ void push(int data)
     top = head; //updating the top pointer
 }
 
+int isEmpty()
+{
+    if (top == NULL)
+    {
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
 int pop()
 {
     struct node *temp;
     temp = top;
+    if (isEmpty())
+    {
+        printf("Stack Underflow. \n");
+        exit(1);
+    }
     int val = temp->data;
-
     top = top->link;
     free(temp);
     temp = NULL;
@@ -36,6 +51,11 @@ void print()
 {
     struct node *temp;
     temp = top;
+    if (isEmpty())
+    {
+        printf("Stack Underflow. \n");
+        exit(1);
+    }
     while (temp!=NULL)
     {
         printf("%d  ", temp->data);
@@ -44,9 +64,16 @@ void print()
     printf("\n");
 }
 
+int peek() //returns top most element of the list
+{
+    struct node *new;
+    new = top;
+    printf("Here's the top-most element: %d\n", new->data);
+}
+
 int main()
 {
-    printf("Enter 1 for pushing, 2 for printing, 3 for popping the elements, and 4 for exiting the process: ");
+    printf("Enter 1 for pushing, 2 for printing, 3 for popping the elements, 4 for peeking into, and 5 for exiting the process: ");
     int choice, data;
     while (1)
     {
@@ -65,6 +92,9 @@ int main()
                 printf("Popped value: %d", val);
                 break;
             case 4:
+                peek();
+                break;
+            case 5:
                 printf("Exiting...\n");
                 exit(1);
                 break;

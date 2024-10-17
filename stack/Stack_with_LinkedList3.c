@@ -5,36 +5,36 @@ typedef struct node
 {
     int data;
     struct node *next;
-} node;
+} nd;
 
-nd *push(node *head, int elem)
+nd *push(nd *head, int elem)
 {
-    node *list;
-    if (head == NULL)
+    nd *list;
+    if (head==NULL)
     {
-        node *list = (node *)malloc(sizeof(node));
-        list->data = elem;
-        list->next = NULL;
-        head = list;
+        nd *list=(nd *)malloc(sizeof(nd));
+        list->data=elem;
+        list->next=NULL;
+        head=list;
     }
-
-    else{
-        node *list = (node *)malloc(sizeof(node));
-        list->data = elem;
-        list->next = head;
-        head = list;
+    else
+    {
+        nd *list=(nd *)malloc(sizeof(nd));
+        list->data=elem;
+        list->next=head;
+        head=list;
     }
     return head;
 }
 
-int display(node *list, node *head)
+void display(nd *head)
 {
-    node *temp;
+    nd *temp;
     temp = head;
     while (temp!=NULL)
     {
         printf("%d ", temp->data);
-        temp = temp->next;
+        temp=temp->next;
     }
 }
 
@@ -43,8 +43,12 @@ int main()
     int elem;
     char ch;
     int choice;
-    node *list, *head = NULL;
-    list = (node *)malloc(sizeof(node));
+    nd *head = NULL;
+    /*
+    printf("Enter element: ");
+    scanf("%d", &elem);
+    push(head, elem);
+    */
     printf("Would you like to enter elements: (y/n)");
     scanf("%c", &ch);
     if (ch == 'n')
@@ -62,19 +66,21 @@ int main()
                 case 1:
                     printf("Enter element: ");
                     scanf("%d", &elem);
-                    head = push(head, elem);
+                    head=push(head, elem);
                     break;
                 case 2:
                     //pop();
                     printf("Tf, ya doing here!");
                 case 3:
-                    display(list, head);
+                    display(head);
                     break;
-                if (choice == 3)
-                {
-                    break;
-                }
+               case 4:break;
+                        goto exit;
+                default:printf("No probs!");
             }
+
         }
+        exit:
+        printf("Quited");
     }
 }

@@ -4,16 +4,18 @@
 int push(int *arr, int elem, int top)
 {
    *(arr+top) = elem;
+   return top;
 }
 
 int pop(int *arr, int top)
 {
-    
+    top--;
+    return top;
 }
 
-int display(int *arr, int n)
+int display(int *arr, int top)
 {
-    for (i = 0; i<n; i++)
+    for (int i = 0; i<top; i++)
     {
         printf("%d ", *(arr+i));
     }
@@ -38,7 +40,7 @@ int main()
             printf("Enter element: ");
             scanf("%d", &elem);
             //arr[top] = elem;
-            push(arr, elem, top);
+            top = push(arr, elem, top);
             top+=1;
         }
         else if (top = -1)
@@ -52,7 +54,8 @@ int main()
             break;
         }
     }
-
+    top = pop(arr, top);
     printf("Woud you like to print the contents of the stack?: ");
-    display(arr, sizeof(arr)/sizeof(int));
+    //display(arr, sizeof(arr)/sizeof(int));
+    display(arr, top);
 }
